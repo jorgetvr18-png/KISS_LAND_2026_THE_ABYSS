@@ -1,4 +1,7 @@
-
+/* =========================================================
+   AR QUEST · KISS LAND  —  ESTILOS
+   Paleta: negro + verde menta neón (como el logo de Kiss Land)
+   ========================================================= */
 :root {
   --menta: #3dffb0;
   --rojo: #ff2a55;
@@ -8,14 +11,14 @@
 
 html, body {
   margin: 0; width: 100%; height: 100%; overflow: hidden;
-  background: #000; color: var(--texto);
+  background: transparent; color: var(--texto);
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Segoe UI', Arial, sans-serif;
   -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
 }
 video { object-fit: cover; }
 a-assets, a-assets img { display: none; }
 
-
+/* ---------- Tipografía de títulos (estilo Kiss Land) ---------- */
 .titulo-kl {
   font-family: 'Dela Gothic One', 'Noto Sans JP', Impact, sans-serif;
   font-weight: 400; letter-spacing: .05em; line-height: 1;
@@ -25,6 +28,7 @@ a-assets, a-assets img { display: none; }
   font-size: 22px; letter-spacing: .25em; color: var(--menta); opacity: .9; margin: 4px 0 8px;
 }
 
+/* ---------- Panel superior (HUD) ---------- */
 #hud {
   position: fixed; top: calc(8px + env(safe-area-inset-top)); left: 8px; right: 8px; z-index: 10;
   display: flex; align-items: center; gap: 8px; padding: 7px 8px 11px; border-radius: 14px;
@@ -55,7 +59,7 @@ a-assets, a-assets img { display: none; }
 }
 #estado.oculto { display: none; }
 
-
+/* ---------- Pantallas (inicio, nivel, Game Over, Winner) ---------- */
 #pantalla {
   position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center;
   justify-content: center; text-align: center; padding: 20px 20px 70px; overflow-y: auto;
@@ -69,7 +73,7 @@ a-assets, a-assets img { display: none; }
 }
 #pantalla p { margin: 4px 0 14px; font-size: 15px; line-height: 1.5; color: #cfe; white-space: pre-line; max-width: 420px; }
 
-
+/* Game Over (rojo) y Winner (menta) */
 #pantalla.gameover h1 { font-size: 58px; color: var(--rojo); text-shadow: 0 0 20px rgba(255,42,85,.9); }
 #pantalla.gameover .kana { color: var(--rojo); }
 #pantalla.gameover .logoGrande { box-shadow: 0 0 30px rgba(255,42,85,.6); filter: grayscale(.6); }
@@ -90,7 +94,7 @@ a-assets, a-assets img { display: none; }
 }
 #boton:active { transform: scale(.96); }
 
-
+/* ---------- Controles: joystick + cruceta ---------- */
 #controles {
   position: fixed; left: 14px; right: 14px; bottom: calc(52px + env(safe-area-inset-bottom)); z-index: 12;
   display: flex; justify-content: space-between; align-items: flex-end; pointer-events: none;
@@ -118,7 +122,7 @@ a-assets, a-assets img { display: none; }
 }
 #cruceta button:active, #cruceta button.activo { background: var(--menta); color: #000; }
 
-
+/* ---------- Pie de página ---------- */
 #pie {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; text-align: center; font-size: 10.5px; font-weight: 500;
   letter-spacing: .06em; line-height: 1.35; color: var(--menta); background: rgba(0,0,0,.88);
