@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>AR Quest · Kiss Land</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@500;900&display=swap" rel="stylesheet">
+
+  <!-- Estilos (archivo separado) -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Motor 3D y realidad aumentada -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.7/aframe/build/aframe-ar.js"></script>
+</head>
+
+<body>
+
+
+  <header id="hud">
+    <img class="logo" src="img/kiss-land.jpg" alt="Kiss Land">
+    <div class="stats">
+      <div class="stat"><span>NIVEL</span><b id="nivel">1</b></div>
+      <div class="stat"><span>META</span><b id="meta">0</b></div>
+      <div class="stat"><span>PUNTOS</span><b id="puntos">0</b></div>
+      <div class="stat" id="cajaTiempo"><span>TIEMPO</span><b id="tiempo">0</b></div>
+      <div class="stat"><span>RÉCORD</span><b id="record">0</b></div>
+    </div>
+    <button id="reiniciar" title="Reiniciar">↻</button>
+    <div id="barra"><i id="progreso"></i></div>
+  </header>
+  <div id="estado">Apunta la cámara al marcador HIRO</div>
+
+
+  <div id="pantalla">
+    <img class="logoGrande" id="logoGrande" src="img/logo.jpg" alt="Logo">
+    <h1 id="titulo" class="titulo-kl">AR QUEST</h1>
+    <div id="kana" class="kana">キッスランド</div>
+    <p id="texto"></p>
+    <div class="leyenda" id="leyenda"></div>
+    <button id="boton">JUGAR</button>
+  </div>
+
+  <div id="controles">
+    <div id="joystick"><div id="palanca"></div></div>
+    <div id="cruceta">
+      <button data-dir="up"    style="grid-area: u">▲</button>
+      <button data-dir="left"  style="grid-area: l">◀</button>
+      <button data-dir="right" style="grid-area: r">▶</button>
+      <button data-dir="down"  style="grid-area: d">▼</button>
+    </div>
+  </div>
+
+ 
+  <footer id="pie">JORGE TADEO VÁZQUEZ RODRÍGUEZ - 7TA DESARROLLO DE APLICACIONES MOVILES</footer>
+
+
+  <a-scene embedded vr-mode-ui="enabled: false"
+           arjs="sourceType: webcam; sourceWidth: 1280; sourceHeight: 960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;"
+           renderer="logarithmicDepthBuffer: true;">
+
+    <a-assets timeout="15000">
+      <img id="img-logo" src="img/logo.jpg">
+      <!-- Nivel 1: la trilogía -->
+      <img id="img-hob" src="img/house-of-balloons.jpg">
+      <img id="img-thu" src="img/thursday.jpg">
+      <img id="img-eos" src="img/echoes-of-silence.jpg">
+      <!-- Nivel 2 -->
+      <img id="img-sta" src="img/starboy.jpg">
+      <img id="img-mdm" src="img/my-dear-melancholy.jpg">
+      <img id="img-aft" src="img/after-hours.jpg">
+      <!-- Nivel 3 -->
+      <img id="img-dfm" src="img/dawn-fm.jpg">
+      <img id="img-idl" src="img/the-idol.jpg">
+      <img id="img-hut" src="img/hurry-up-tomorrow.jpg">
+    </a-assets>
+
+    <a-marker preset="hiro" id="marcador">
+
+
+      <a-circle position="0 0.004 0" rotation="-90 0 0" radius="1.1" color="#03100b" opacity="0.8"></a-circle>
+      <a-ring position="0 0.01 0" rotation="-90 0 0" radius-inner="1.04" radius-outer="1.1" material="color: #3dffb0; shader: flat"></a-ring>
+      <a-text value="KISS LAND" position="0 0.02 1.3" rotation="-90 0 0" align="center" width="3.4" color="#3dffb0"></a-text>
+
+      <a-ring id="aroJugador" position="0 0.012 0" rotation="-90 0 0" radius-inner="0.2" radius-outer="0.25"
+              material="color: #3dffb0; shader: flat"></a-ring>
+      <a-entity id="jugador" position="0 0.32 0">
+        <a-entity rotation="-35 0 0"
+                  animation="property: position; to: 0 0.06 0; dir: alternate; loop: true; dur: 800; easing: easeInOutSine">
+          <a-plane width="0.62" height="0.37" position="0 0 -0.004" material="shader: flat; color: #3dffb0"></a-plane>
+          <a-plane width="0.56" height="0.315" material="shader: flat; src: #img-logo; side: double"></a-plane>
+        </a-entity>
+      </a-entity>
+
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+
+:root {
+  --menta: #3dffb0;
+  --rojo: #ff2a55;
+  --fondo: #030505;
+  --texto: #e8f5ef;
+}
+
+html, body {
+  margin: 0; width: 100%; height: 100%; overflow: hidden;
+  background: #000; color: var(--texto);
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Segoe UI', Arial, sans-serif;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+}
+video { object-fit: cover; }
+a-assets, a-assets img { display: none; }
+
+
+.titulo-kl {
+  font-family: 'Dela Gothic One', 'Noto Sans JP', Impact, sans-serif;
+  font-weight: 400; letter-spacing: .05em; line-height: 1;
+}
+.kana {
+  font-family: 'Dela Gothic One', 'Noto Sans JP', sans-serif;
+  font-size: 22px; letter-spacing: .25em; color: var(--menta); opacity: .9; margin: 4px 0 8px;
+}
+
+#hud {
+  position: fixed; top: calc(8px + env(safe-area-inset-top)); left: 8px; right: 8px; z-index: 10;
+  display: flex; align-items: center; gap: 8px; padding: 7px 8px 11px; border-radius: 14px;
+  background: rgba(0,0,0,.74); border: 1px solid var(--menta); backdrop-filter: blur(4px);
+  box-shadow: 0 0 14px rgba(61,255,176,.45), inset 0 0 12px rgba(61,255,176,.12);
+}
+#hud .logo { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: none; }
+.stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; flex: 1; text-align: center; }
+.stat span { display: block; font-size: 9px; letter-spacing: .12em; color: var(--menta); opacity: .9; }
+.stat b { font-size: 17px; font-weight: 900; font-variant-numeric: tabular-nums; }
+#cajaTiempo.alerta b { color: var(--rojo); animation: parpadeo .5s infinite alternate; }
+@keyframes parpadeo { from { opacity: 1 } to { opacity: .3 } }
+
+#barra { position: absolute; left: 12px; right: 12px; bottom: 3px; height: 4px; background: #10211b; border-radius: 3px; overflow: hidden; }
+#progreso { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #1fc98a, var(--menta));
+            box-shadow: 0 0 8px var(--menta); transition: width .2s; }
+
+#reiniciar {
+  flex: none; width: 36px; height: 36px; font-size: 18px; color: var(--menta); background: transparent;
+  border: 1px solid var(--menta); border-radius: 10px; cursor: pointer;
+}
+#reiniciar:active { background: var(--menta); color: #000; }
+
+#estado {
+  position: fixed; top: calc(84px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 10;
+  padding: 6px 14px; font-size: 13px; white-space: nowrap; color: var(--menta); background: rgba(0,0,0,.75);
+  border: 1px solid var(--menta); border-radius: 20px; box-shadow: 0 0 10px rgba(61,255,176,.5);
+}
+#estado.oculto { display: none; }
+
+
+#pantalla {
+  position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding: 20px 20px 70px; overflow-y: auto;
+  background: radial-gradient(ellipse at 50% 28%, rgba(61,255,176,.18), transparent 62%),
+              repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 2px, transparent 2px 4px), var(--fondo);
+}
+#pantalla.oculta { display: none; }
+#pantalla .logoGrande { width: min(60vw, 260px); border-radius: 18px; box-shadow: 0 0 30px rgba(61,255,176,.55); }
+#pantalla h1 {
+  margin: 16px 0 2px; font-size: 44px; color: var(--menta); text-shadow: 0 0 16px rgba(61,255,176,.85);
+}
+#pantalla p { margin: 4px 0 14px; font-size: 15px; line-height: 1.5; color: #cfe; white-space: pre-line; max-width: 420px; }
+
+
+#pantalla.gameover h1 { font-size: 58px; color: var(--rojo); text-shadow: 0 0 20px rgba(255,42,85,.9); }
+#pantalla.gameover .kana { color: var(--rojo); }
+#pantalla.gameover .logoGrande { box-shadow: 0 0 30px rgba(255,42,85,.6); filter: grayscale(.6); }
+#pantalla.winner h1 { font-size: 64px; text-shadow: 0 0 24px rgba(61,255,176,1); animation: brillo 1s infinite alternate; }
+@keyframes brillo { from { transform: scale(1) } to { transform: scale(1.06) } }
+
+.leyenda { display: flex; justify-content: center; gap: 12px; margin: 4px 0 16px; width: 100%; max-width: 380px; }
+.leyenda div { flex: 1; font-size: 13px; font-weight: 900; color: var(--menta); }
+.leyenda img {
+  display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px;
+  border: 2px solid var(--menta); box-shadow: 0 0 10px rgba(61,255,176,.5); margin-bottom: 4px;
+}
+
+#boton {
+  margin-top: 6px; padding: 13px 34px; font-family: 'Dela Gothic One', 'Noto Sans JP', sans-serif; font-size: 20px;
+  letter-spacing: .1em; color: #031a10; background: var(--menta); border: none; border-radius: 12px; cursor: pointer;
+  box-shadow: 0 0 20px rgba(61,255,176,.7);
+}
+#boton:active { transform: scale(.96); }
+
+
+#controles {
+  position: fixed; left: 14px; right: 14px; bottom: calc(52px + env(safe-area-inset-bottom)); z-index: 12;
+  display: flex; justify-content: space-between; align-items: flex-end; pointer-events: none;
+}
+#controles > * { pointer-events: auto; touch-action: none; }
+
+#joystick {
+  position: relative; width: 130px; height: 130px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(61,255,176,.16), rgba(0,0,0,.55));
+  border: 2px solid var(--menta); box-shadow: 0 0 16px rgba(61,255,176,.5), inset 0 0 14px rgba(61,255,176,.25);
+}
+#palanca {
+  position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #b8ffe3, var(--menta) 55%, #17a874);
+  box-shadow: 0 0 14px rgba(61,255,176,.9);
+}
+
+#cruceta {
+  display: grid; grid-template-columns: repeat(3, 52px); grid-template-rows: repeat(3, 52px); gap: 4px;
+  grid-template-areas: ". u ." "l . r" ". d .";
+}
+#cruceta button {
+  font-size: 20px; color: var(--menta); background: rgba(0,0,0,.6); border: 2px solid var(--menta);
+  border-radius: 12px; box-shadow: 0 0 10px rgba(61,255,176,.4); touch-action: none;
+}
+#cruceta button:active, #cruceta button.activo { background: var(--menta); color: #000; }
+
+
+#pie {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; text-align: center; font-size: 10.5px; font-weight: 500;
+  letter-spacing: .06em; line-height: 1.35; color: var(--menta); background: rgba(0,0,0,.88);
+  border-top: 1px solid rgba(61,255,176,.6); padding: 7px 10px calc(7px + env(safe-area-inset-bottom));
+  text-shadow: 0 0 6px rgba(61,255,176,.7);
+}
